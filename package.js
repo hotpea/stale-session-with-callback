@@ -1,8 +1,8 @@
 Package.describe({
-  name:    'zuuk:stale-session',
-  summary: 'Stale session and session timeout handling for meteorjs',
-  git:     "https://github.com/lindleycb/meteor-stale-session.git",
-  version: "1.0.8"
+  name:    'hotpea:stale-session-with-callback',
+  summary: 'Stale session and session timeout handling with callback for [meteorjs](http://www.meteor.com/).',
+  git:     "https://github.com/hotpea/stale-session-with-callback",
+  version: "1.0.3"
 });
 
 Package.onUse(function(api) {

@@ -37,12 +37,18 @@ Meteor.methods({
 //
 Meteor.setInterval(function() {
     var now = new Date(), overdueTimestamp = new Date(now-inactivityTimeout);
+
+    var before = Meteor.users.find({heartbeat: {$exists: 1}}).count();
+
     Meteor.users.update({heartbeat: {$lt: overdueTimestamp}},
                         {$set: {'services.resume.loginTokens': []},
                          $unset: {heartbeat:1}},
                         {multi: true});
-						
-	if(staleSessionCallbackFunction) {
+
+    var after = Meteor.users.find({heartbeat: {$exists: 1}}).count();
+
+
+    if((before != after) && staleSessionCallbackFunction) {
 		Meteor.call('staleCallBack');
 	}
 }, staleSessionPurgeInterval);
